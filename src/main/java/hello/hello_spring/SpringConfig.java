@@ -1,6 +1,7 @@
 package hello.hello_spring;
 
 import hello.hello_spring.repository.JdbcMemberRepository;
+import hello.hello_spring.repository.JdbcTemplateMemberRepository;
 import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMemberRepository;
 import hello.hello_spring.service.MemberService;
@@ -32,6 +33,7 @@ public class SpringConfig {
     public MemberRepository memberRepository() {
     // 기존 코드 수정 1도 없이 구현체만 바꾸어주면 애플리케이션이 돌아감. DI의 장점.
     //  return new MemoryMemberRepository();
-        return new JdbcMemberRepository(dataSource);
+    // return new JdbcMemberRepository(dataSource);
+        return new JdbcTemplateMemberRepository(dataSource);
     }
 }
