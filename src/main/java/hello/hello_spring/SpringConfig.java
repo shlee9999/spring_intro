@@ -1,13 +1,24 @@
 package hello.hello_spring;
 
+import hello.hello_spring.repository.JdbcMemberRepository;
 import hello.hello_spring.repository.MemberRepository;
 import hello.hello_spring.repository.MemoryMemberRepository;
 import hello.hello_spring.service.MemberService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
+
 @Configuration
 public class SpringConfig {
+
+    private DataSource dataSource;
+
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
 
     @Bean
     public MemberService memberService() {
@@ -19,6 +30,8 @@ public class SpringConfig {
     // 이것이 컴포넌트 스캔 방법이 아닌 Bean 등록 방법의 장점
     @Bean
     public MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
+    // 기존 코드 수정 1도 없이 구현체만 바꾸어주면 애플리케이션이 돌아감. DI의 장점.
+    //  return new MemoryMemberRepository();
+        return new JdbcMemberRepository(dataSource);
     }
 }

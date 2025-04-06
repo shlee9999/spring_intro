@@ -21,7 +21,7 @@ public class MemberService {
     private final MemberRepository memberRepository;
 
     // DI(Dependency Injection)
-    // @Repository로 등록된 MemoryMemberRepository를 Spring이 넣어준다
+    // SpringConfig에서 Repository 구현체를 바꾸어 넣어줌. (DI의 큰 장점)
 
     public MemberService(MemberRepository memberRepository) {
         this.memberRepository = memberRepository;
