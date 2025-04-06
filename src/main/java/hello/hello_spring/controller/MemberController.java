@@ -22,6 +22,7 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
+        System.out.println("memberService = " + memberService.getClass()); // class hello.hello_spring.service.MemberService$$SpringCGLIB$$0 <- 복제 기술. proxy
     }
 
     @GetMapping("/members/new")
